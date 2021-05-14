@@ -1,1 +1,3 @@
-# practica3
+# Practica3
+
+## Se trata de realizar un programa ...
