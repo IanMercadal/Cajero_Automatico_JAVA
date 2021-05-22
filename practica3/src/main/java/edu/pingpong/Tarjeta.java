@@ -7,7 +7,7 @@ public abstract class Tarjeta {
     String nombre;
     String apellido;
     int SaldoDisponible;
-    int prestamo;
+    int CreditoDisponible;
 
  
 
@@ -17,7 +17,7 @@ public abstract class Tarjeta {
         this.nombre = nombre;
         this.apellido =  apellido;
         this.SaldoDisponible = SaldoDisponible;
-        this.prestamo = prestamo;
+        this.CreditoDisponible = CreditoDisponible;
     }
 
         public void setApellido(String apellido) {

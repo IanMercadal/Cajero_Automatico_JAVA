@@ -9,13 +9,9 @@ public class  CajeroAutomatico{
     public int idUltCaj;
     public int idCaj = 0;
     public int[][] billetes;
-    public List<String> tarjeta;
-    public List<Object> ListaTarjeta = new ArrayList<>();
+    public List<Object> tarjeta;
+    /* public List<Object> ListaTarjeta = new ArrayList<>(); */
 
-
-
-
-    
     public CajeroAutomatico() {
         this.setIdCaj(idUltCaj++);
         tarjeta = new ArrayList<>();
@@ -34,14 +30,12 @@ public class  CajeroAutomatico{
         return billetes;
     }
 
-
-
-
-    public void setListaTarjeta(List<Object> listaTarjeta) {
-    ListaTarjeta = listaTarjeta;
+ // Preguntar a Oualid como era esta parte
+    public void setTarjeta(List<Object> tarjeta) {
+        this.tarjeta = tarjeta;
     }
     public List<Object> getListaTarjeta() {
-        return ListaTarjeta;
+        return tarjeta;
     }
 
 

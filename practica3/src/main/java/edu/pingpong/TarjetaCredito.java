@@ -16,7 +16,7 @@ public class TarjetaCredito extends Tarjeta{
         this.nombre = nombre;
         this.apellido =  apellido;
         this.SaldoDisponible = SaldoDisponible;
-        this.prestamo = CreditoDisponible;
+        this.CreditoDisponible = CreditoDisponible;
     }
 
     public void setSaldoDisponible(int saldoDisponible) {
