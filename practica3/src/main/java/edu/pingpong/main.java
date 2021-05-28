@@ -9,6 +9,7 @@ public class main {
 
     public static TarjetaCredito tarjetaCreditoo; // Son objetos. El static nos permite utilizarlo en toda la clase main.
     public static TarjetaDebito tarjetaDebitoo; // Son objetos. El static nos permite utilizarlo en toda la clase main.
+    static Scanner retirarDinero = new Scanner(System.in);
  
     public static int[][] carga_billetes; // Le ponemos las dos claves para las dos posiciones/valores. Si no da error.
  
@@ -25,9 +26,9 @@ public class main {
 
             try{
                 Scanner opcion = new Scanner(System.in);
-                System.out.println("Elige una de las opciones" + "\n" +
-                "[1] Sacar dinero" + "\n" +
-                "[2] Salir");
+                System.out.println("Elige una de las opciones");
+                System.out.println("1. Opcion 1 - Sacar dinero");
+                System.out.println("2. Opcion 2 - Salir");
                 int selected = opcion.nextInt();
       
                 // Opciones presentadas al usuario.
@@ -46,7 +47,7 @@ public class main {
                     micajero.getListaTarjeta().add(tarjetaDebitoo);
                     mostrarTarjeta();
                     mostrarCajero();
-                    sacarDinero();
+                    comprobarIdentidad();
                     
                 }
 
@@ -96,7 +97,7 @@ public class main {
             System.out.println(MessageFormat.format("{0} billetes de {1}",carga_billetes[6][1],carga_billetes[6][0]));
         }
 
-        public static void sacarDinero(){
+        public static void comprobarIdentidad(){
 
 
                 try{
@@ -104,9 +105,9 @@ public class main {
                     Scanner nif = new Scanner(System.in);
                     Scanner pin = new Scanner(System.in);
 
-                    System.out.println("Elige una de las opciones de nuevo, por favor: " + "\n" +
-                    "[1] Sacar dinero" + "\n" +
-                    "[2] Salir");
+                    System.out.println("Elige una de las opciones de nuevo, para confirmar la opcion escogida.");
+                    System.out.println("1. Opcion 1 - Sacar dinero");
+                    System.out.println("2. Opcion 2 - Salir");
                     int money = retire_money.nextInt();
                     
                         if(money == 1){
@@ -124,28 +125,9 @@ public class main {
                         // Si el nif y el pin de Tarjeta debito/credito es correcto, entra en el if, si no, aviso.
 
                             if(nifInput.equals(tarjetaCreditoo.NIF) && pinInput == tarjetaCreditoo.PIN || nifInput.equals(tarjetaDebitoo.NIF) && pinInput == tarjetaDebitoo.PIN){
-                                Scanner retirarDinero = new Scanner(System.in);
-                                System.out.println("¿Que cantidad deseas retirar?");
-                                int dinero = retirarDinero.nextInt();
-
-
-                            // Excepciones
-
-                            if (dinero > 20000){
-                                System.err.println("Has sacado más cantidad de la que tienes, intentalo de nuevo.");
-                            }
-                            else if (dinero > 1405){
-                                System.err.println("Has sacado más cantidad de la que dispone el cajero, intentalo de nuevo.");
-                            }
-                            else if (dinero == 0){
-                                System.err.println("Has introducido una cantidad insuficiente, intentalo de nuevo.");
-                            }
-
-                            }
-                            else{
-                                System.out.println("Algo ha ido mal en el proceso, seguramente porque no ha introducido bien los datos. Por favor, intentelo de nuevo.");
-                            }
-                            // Fin de excepciones
+                                
+                                restarDinero();
+                                // Llamar al método
                         }
 
                         else{
@@ -154,12 +136,69 @@ public class main {
                             }
                         }
                     }
-                
+                }
                 catch(Exception errorr){
                     System.out.println("Ha sido imposible sacar el dinero, por favor, intentalo de nuevo.");
                 }
             
         }
+        public static void restarDinero(){ 
+            System.out.println("¿Que cantidad deseas retirar?");
+            int dinero = retirarDinero.nextInt();
+            
+            /* ACTUALMENTE DEBEMOS REALIZAR UNA CLASE O FUNCION, EN LA CUAL SE ACCEDA AL ARRAY BIDIMENSIONAL TAL COMO LO HACE PILDORAS INFORMATICAS */
 
+            int ContadorQ  = 0;
+            int ContadorD  = 0;
+            int ContadorC  = 0;
+            int ContadorCinco  = 0;
+            //int dineroFinal = retirarDinero.nextInt();
+            // int contadorDineroFinal = 0;
 
-}
+                while (dinero > 0){
+                    if (dinero > 1405){
+                        System.err.println("Has sacado más cantidad de la que dispone el cajero, intentalo de nuevo.");
+                        break;
+                    }
+                
+                    if (ContadorQ < 1 && dinero >= 500){
+                        //System.out.println(dinero -= 500);
+                        //dinero -= 500;
+                        carga_billetes[0][1]--;
+                        //System.out.println( carga_billetes[0][1]);
+                        ContadorQ ++;
+                        }
+                    if (ContadorD < 3 && dinero >= 200 ){
+                        //System.out.println(dinero -= 200);
+                        //dinero -= 200;
+                        carga_billetes[1][1]--;
+                        //System.out.println( carga_billetes[1][1]);
+                        ContadorD ++;
+                        }
+                    else if (ContadorC < 18 && dinero >= 10){
+                        //System.out.println(dinero -= 10);
+                        //dinero -= 10;
+                        carga_billetes[5][1]--;
+                        //System.out.println( carga_billetes[5][1]);
+                        ContadorC ++;
+                    }
+                    else if (ContadorCinco < 25 && dinero >= 5){
+                        //System.out.println(dinero -= 5);
+                        //dinero -= 5;
+                        carga_billetes[6][1]--;
+                        //System.out.println( carga_billetes[6][1]);
+                        ContadorCinco ++;
+                    }
+                    
+            }
+            System.out.println("Desglose de la cantidad satisfecha:");
+            System.out.println("Se ha utilizado " + ContadorQ + " billete de 500");
+            System.out.println("Se ha utilizado " + ContadorD + " billetes de 200");
+            System.out.println("Se ha utilizado " + 0 + " billetes de 100");
+            System.out.println("Se ha utilizado " + 0 + " billetes de 50");
+            System.out.println("Se ha utilizado " + 0 + " billetes de 20");
+            System.out.println("Se ha utilizado " + ContadorC + " billetes de 10");
+            System.out.println("Se ha utilizado " + ContadorCinco + " billetes de 5");
+            // return  dinero;
+        } 
+    }
