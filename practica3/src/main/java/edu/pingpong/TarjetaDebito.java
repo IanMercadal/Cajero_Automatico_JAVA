@@ -1,7 +1,7 @@
 package edu.pingpong;
+import java.util.Scanner;
 
 public class TarjetaDebito extends Tarjeta{
-
 
     TarjetaDebito(){
         
@@ -19,6 +19,7 @@ public class TarjetaDebito extends Tarjeta{
     }
 
     public int getSaldoDisponible() {
+
         return SaldoDisponible;
     }
 

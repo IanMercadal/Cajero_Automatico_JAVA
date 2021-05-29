@@ -88,13 +88,15 @@ public class main {
     }
 
         public static void mostrarCajero(){
-            System.out.println(MessageFormat.format("{0} billetes de {1}",carga_billetes[0][1],carga_billetes[0][0]));
-            System.out.println(MessageFormat.format("{0} billetes de {1}",carga_billetes[1][1],carga_billetes[1][0]));
-            System.out.println(MessageFormat.format("{0} billetes de {1}",carga_billetes[2][1],carga_billetes[2][0]));
-            System.out.println(MessageFormat.format("{0} billetes de {1}",carga_billetes[3][1],carga_billetes[3][0]));
-            System.out.println(MessageFormat.format("{0} billetes de {1}",carga_billetes[4][1],carga_billetes[4][0]));
-            System.out.println(MessageFormat.format("{0} billetes de {1}",carga_billetes[5][1],carga_billetes[5][0]));
-            System.out.println(MessageFormat.format("{0} billetes de {1}",carga_billetes[6][1],carga_billetes[6][0]));
+                System.out.println(
+                MessageFormat.format("{0} billetes de {1}",carga_billetes[0][1],carga_billetes[0][0]) + "\n" + 
+                MessageFormat.format("{0} billetes de {1}",carga_billetes[1][1],carga_billetes[1][0]) + "\n" + 
+                MessageFormat.format("{0} billetes de {1}",carga_billetes[2][1],carga_billetes[2][0]) + "\n" + 
+                MessageFormat.format("{0} billetes de {1}",carga_billetes[3][1],carga_billetes[3][0]) + "\n" + 
+                MessageFormat.format("{0} billetes de {1}",carga_billetes[4][1],carga_billetes[4][0]) + "\n" + 
+                MessageFormat.format("{0} billetes de {1}",carga_billetes[5][1],carga_billetes[5][0]) + "\n" +
+                MessageFormat.format("{0} billetes de {1}",carga_billetes[6][1],carga_billetes[6][0])
+            );
         }
 
         public static void comprobarIdentidad(){
@@ -150,8 +152,9 @@ public class main {
 
             int ContadorQ  = 0;
             int ContadorD  = 0;
-            int ContadorC  = 0;
+            int ContadorDiez  = 0;
             int ContadorCinco  = 0;
+
             //int dineroFinal = retirarDinero.nextInt();
             // int contadorDineroFinal = 0;
 
@@ -162,43 +165,34 @@ public class main {
                     }
                 
                     if (ContadorQ < 1 && dinero >= 500){
-                        //System.out.println(dinero -= 500);
-                        //dinero -= 500;
+                        dinero -= 500;
                         carga_billetes[0][1]--;
-                        //System.out.println( carga_billetes[0][1]);
                         ContadorQ ++;
                         }
                     if (ContadorD < 3 && dinero >= 200 ){
-                        //System.out.println(dinero -= 200);
-                        //dinero -= 200;
+                        dinero -= 200;
                         carga_billetes[1][1]--;
-                        //System.out.println( carga_billetes[1][1]);
                         ContadorD ++;
                         }
-                    else if (ContadorC < 18 && dinero >= 10){
-                        //System.out.println(dinero -= 10);
-                        //dinero -= 10;
+                    else if (ContadorDiez < 18 && dinero >= 10){
+                        dinero -= 10;
                         carga_billetes[5][1]--;
-                        //System.out.println( carga_billetes[5][1]);
-                        ContadorC ++;
+                        ContadorDiez ++;
                     }
                     else if (ContadorCinco < 25 && dinero >= 5){
-                        //System.out.println(dinero -= 5);
-                        //dinero -= 5;
+                        dinero -= 5;
                         carga_billetes[6][1]--;
-                        //System.out.println( carga_billetes[6][1]);
                         ContadorCinco ++;
                     }
-                    
+
             }
             System.out.println("Desglose de la cantidad satisfecha:");
-            System.out.println("Se ha utilizado " + ContadorQ + " billete de 500");
-            System.out.println("Se ha utilizado " + ContadorD + " billetes de 200");
-            System.out.println("Se ha utilizado " + 0 + " billetes de 100");
-            System.out.println("Se ha utilizado " + 0 + " billetes de 50");
-            System.out.println("Se ha utilizado " + 0 + " billetes de 20");
-            System.out.println("Se ha utilizado " + ContadorC + " billetes de 10");
-            System.out.println("Se ha utilizado " + ContadorCinco + " billetes de 5");
-            // return  dinero;
-        } 
+            System.out.println(ContadorQ + " billetes de 500 €");
+            System.out.println(ContadorD + " billetes de 200 €");
+            System.out.println(ContadorDiez + " billetes de 10 €");
+            System.out.println(ContadorCinco + " billetes de 5 €");
+
+            // DEBEMOS RESTAR DE SALDO EL DINERO INTRODUCIDO POR PANTALLA.
+             
+        }
     }
