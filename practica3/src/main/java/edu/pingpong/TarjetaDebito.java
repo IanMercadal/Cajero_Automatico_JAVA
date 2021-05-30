@@ -1,32 +1,32 @@
 package edu.pingpong;
-import java.util.Scanner;
 
-public class TarjetaDebito extends Tarjeta implements interfazTarjetas{
+public class TarjetaDebito extends Tarjeta{
 
-    Scanner retirarDinero;
-    TarjetaDebito(){
-        
+    int saldoDisponible;
+
+    public TarjetaDebito(){
     }
-    public TarjetaDebito(String NIF, int PIN , String nombre, String apellido, int SaldoDisponible){
-        this.NIF = NIF;
-        this.PIN = PIN;
-        this.nombre = nombre;
-        this.apellido =  apellido;
-        this.SaldoDisponible = SaldoDisponible;
+    public TarjetaDebito(String NIF, int PIN , String nombre, String apellido, int saldoDisponible){
+        super(NIF,PIN,nombre,apellido);
+        this.saldoDisponible = saldoDisponible;
     }
 
-    public void setSaldoDisponible(int SaldoDisponible) {
-        SaldoDisponible = SaldoDisponible; // - retirarDinero ;
+    public TarjetaDebito(TarjetaDebito tarjetaDebito){
+        super(tarjetaDebito.getNIF(),tarjetaDebito.getPIN(),tarjetaDebito.getApellido(),tarjetaDebito.getNombre());
+        this.saldoDisponible = tarjetaDebito.saldoDisponible;
     }
 
-    public int getSaldoDisponible() {
-        return SaldoDisponible;
+    public void setsaldoDisponible(int saldoDisponible) {
+        this.saldoDisponible = saldoDisponible;
+    }
+
+    public int getsaldoDisponible() {
+        return saldoDisponible;
     }
     @Override
     public  void mostrarTarjeta(){
-        super.mostrarTarjeta();
-        getSaldoDisponible();
         System.out.println("Tarjeta Debito: ");
-        System.out.println("Saldo: " + SaldoDisponible);
+        super.mostrarTarjeta();
+        System.out.println("Saldo: " + getsaldoDisponible());
     }
 }

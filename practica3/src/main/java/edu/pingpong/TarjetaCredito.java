@@ -1,54 +1,45 @@
 package edu.pingpong;
 
-public class TarjetaCredito extends Tarjeta implements interfazTarjetas{
+public class TarjetaCredito extends Tarjeta{
     
-    public int SaldoDisponible;
-    public int CreditoDisponible;
+    public int saldoDisponible;
+    public int creditoDisponible;
 
-
-    TarjetaCredito(){
-        
+    public TarjetaCredito(){
     }
 
-    TarjetaCredito(String NIF, int PIN , String nombre, String apellido, int SaldoDisponible,int CreditoDisponible){
-        this.NIF = NIF;
-        this.PIN = PIN;
-        this.nombre = nombre;
-        this.apellido =  apellido;
-        this.SaldoDisponible = SaldoDisponible;
-        this.CreditoDisponible = CreditoDisponible;
+    public TarjetaCredito(String NIF, int PIN , String nombre, String apellido, int saldoDisponible,int creditoDisponible){
+        super(NIF,PIN,nombre,apellido);
+        this.saldoDisponible = saldoDisponible;
+        this.creditoDisponible = creditoDisponible;
     }
 
-    public void setSaldoDisponible(int saldoDisponible) {
-        SaldoDisponible = saldoDisponible;
+    public TarjetaCredito(TarjetaCredito tarjetaCredito){
+        super(tarjetaCredito.getNIF(),tarjetaCredito.getPIN(),tarjetaCredito.getApellido(),tarjetaCredito.getNombre());
+        this.saldoDisponible = tarjetaCredito.saldoDisponible;
+        this.creditoDisponible = tarjetaCredito.creditoDisponible;
+    }
+
+    public void setsaldoDisponible(int saldoDisponible) {
+        this.saldoDisponible = saldoDisponible;
     }
     
-    public int getSaldoDisponible() {
-        return SaldoDisponible;
+    public int getsaldoDisponible() {
+        return saldoDisponible;
     }
 
-    public void setCreditoDisponible(int CreditoDisponible) {
-        CreditoDisponible = CreditoDisponible;
+    public void setcreditoDisponible(int creditoDisponible) {
+        this.creditoDisponible = creditoDisponible;
     }
 
-    public int getCreditoDisponible() {
-        return CreditoDisponible;
+    public int getcreditoDisponible() {
+        return creditoDisponible;
     }
     @Override
     public void mostrarTarjeta(){
-        super.mostrarTarjeta();
-        getSaldoDisponible();
-        getCreditoDisponible();
         System.out.println("Tarjeta Credito: ");
-        System.out.println("Saldo: " + SaldoDisponible);
-        System.out.println("Credito: " + CreditoDisponible);
-    }
-
-    /*
-        public void mostrarTarjeta(){
-        
-    };
-    */
-
-        
+        super.mostrarTarjeta();
+        System.out.println("Saldo: " +  getsaldoDisponible());
+        System.out.println("Credito: " + getcreditoDisponible());
+    }      
 }
