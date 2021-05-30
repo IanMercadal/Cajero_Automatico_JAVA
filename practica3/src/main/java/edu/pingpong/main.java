@@ -3,12 +3,14 @@ import java.util.InputMismatchException;
 import java.text.MessageFormat;
 import java.util.Scanner;
 
-public class main {
+
+public class main{
 
 
 
     public static TarjetaCredito tarjetaCreditoo; // Son objetos. El static nos permite utilizarlo en toda la clase main.
     public static TarjetaDebito tarjetaDebitoo; // Son objetos. El static nos permite utilizarlo en toda la clase main.
+    
     static Scanner retirarDinero = new Scanner(System.in);
  
     public static int[][] carga_billetes; // Le ponemos las dos claves para las dos posiciones/valores. Si no da error.
@@ -67,8 +69,22 @@ public class main {
 
     // Info de los users.
     public static void mostrarTarjeta(){
+        
 
+             //tarjetaa.mostrarTarjeta();
+             System.out.println(" DATOS DE LA TARJETA DEL CLIENTE" + "\n" + 
+        "=========================================" + "\n");
+             //tarjetaa.mostrarTarjeta();
+            
+            tarjetaDebitoo.mostrarTarjeta();
+             
+             System.out.println("");
+             System.out.println(" DATOS DE LA TARJETA DEL CLIENTE" + "\n" + 
+             "=========================================" + "\n");
+             tarjetaCreditoo.mostrarTarjeta();;
+             System.out.println("");
 
+        /*
         System.out.println(" DATOS DE LA TARJETA DEL CLIENTE" + "\n" + 
         "=========================================" + "\n" +
         "Nombre: " + tarjetaDebitoo.nombre + "\n" +
@@ -85,6 +101,7 @@ public class main {
         "Saldo:" + tarjetaCreditoo.getSaldoDisponible() + "\n" + 
         "Crédito: " + tarjetaCreditoo.getCreditoDisponible()
         );
+        */
     }
 
         public static void mostrarCajero(){
@@ -129,7 +146,7 @@ public class main {
                             if(nifInput.equals(tarjetaCreditoo.NIF) && pinInput == tarjetaCreditoo.PIN || nifInput.equals(tarjetaDebitoo.NIF) && pinInput == tarjetaDebitoo.PIN){
                                 
                                 restarDinero();
-                                // Llamar al método
+                                
                         }
 
                         else{
@@ -144,7 +161,7 @@ public class main {
                 }
             
         }
-        public static void restarDinero(){ 
+        public static int restarDinero(){ 
             System.out.println("¿Que cantidad deseas retirar?");
             int dinero = retirarDinero.nextInt();
             
@@ -186,13 +203,14 @@ public class main {
                     }
 
             }
+            
             System.out.println("Desglose de la cantidad satisfecha:");
             System.out.println(ContadorQ + " billetes de 500 €");
             System.out.println(ContadorD + " billetes de 200 €");
             System.out.println(ContadorDiez + " billetes de 10 €");
             System.out.println(ContadorCinco + " billetes de 5 €");
+            return dinero;
 
             // DEBEMOS RESTAR DE SALDO EL DINERO INTRODUCIDO POR PANTALLA.
-             
         }
     }

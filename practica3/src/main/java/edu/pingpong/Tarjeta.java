@@ -1,6 +1,6 @@
 package edu.pingpong;
 
-public abstract class Tarjeta {
+public abstract class Tarjeta implements interfazTarjetas {
 
     String NIF;
     int PIN;
@@ -23,8 +23,25 @@ public abstract class Tarjeta {
         public void setApellido(String apellido) {
             this.apellido = apellido;
         }
-        public String getApellido() {
+
+        public String getNombre() {
+            return nombre;
+        }
+        
+        public String getNIF() {
+            return NIF;
+        }
+        public String getapellido() {
             return apellido;
         }
 
+        @Override
+        public void mostrarTarjeta(){
+            getNombre();
+            getapellido();
+            getNIF();
+            System.out.println("Nombre: " + nombre);
+            System.out.println("Apellido: " + apellido);
+            System.out.println("NIF: " + NIF);            
+        };
 }
