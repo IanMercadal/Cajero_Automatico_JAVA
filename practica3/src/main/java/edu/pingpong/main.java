@@ -43,19 +43,24 @@ public class main{
 
                     System.out.println(" DATOS DE LA TARJETA DEL CLIENTE" + "\n" + 
                     "=========================================" + "\n");
-                    TarjetaCredito tarjetaCredito = (TarjetaCredito) micajero.getListaTarjeta().get(1);
-                    tarjetaCredito.mostrarTarjeta();
+                    
+                    // Tarjeta tarjeta = micajero.getListaTarjeta().get(1);
+                    // TarjetaCredito tarjetaCredito = (TarjetaCredito) tarjeta;
+                    micajero.getListaTarjeta().get(1).mostrarTarjeta();
                     System.out.println(" DATOS DE LA TARJETA DEL CLIENTE" + "\n" + 
                     "=========================================" + "\n");
-                    TarjetaDebito tarjetaDebito = (TarjetaDebito) micajero.getListaTarjeta().get(0);
-                    tarjetaDebito.mostrarTarjeta();
+                    //Tarjeta tarjetaD = micajero.getListaTarjeta().get(0);
+                    //TarjetaDebito tarjetaDebito = (TarjetaDebito) tarjetaD;
+                    micajero.getListaTarjeta().get(0).mostrarTarjeta();
                     mostrarCajero();
+                    comprobarIdentidad(micajero);
                 }
 
                 else{
                     if(selected == 2){
                         System.out.println("Gracias por usar el programa, que tengas buen dia.");
-                        break;
+                        salir = true;
+                        //break;
                     }
                 }
             }  
@@ -101,14 +106,19 @@ public class main{
                         System.out.println("Dame el PIN");
                         Integer pinInput = pin.nextInt(); 
 
+                            /*
                             for (int i = 0; i < micajero.getListaTarjeta().size(); i++) {
+                            }
+                            */
+                            // Credito
+                            if(nifInput.equals(micajero.getListaTarjeta().get(0).getNIF()) && pinInput.equals(micajero.getListaTarjeta().get(0).getPIN())){
+                                restarDineroJ(micajero.getListaTarjeta().get(0));
+                            }
+                        
+                            // Debito
 
-                                if(nifInput.equals(micajero.getListaTarjeta().get(i).getNIF()) && pinInput.equals(micajero.getListaTarjeta().get(i).getPIN())){
-                                    restarDineroJ((TarjetaCredito)micajero.getListaTarjeta().get(i));
-                                }
-                                if(nifInput.equals(micajero.getListaTarjeta().get(i).getNIF()) && pinInput.equals(micajero.getListaTarjeta().get(i).getPIN())){
-                                    restarDineroF((TarjetaDebito)micajero.getListaTarjeta().get(i));
-                                } 
+                            if(nifInput.equals(micajero.getListaTarjeta().get(1).getNIF()) && pinInput.equals(micajero.getListaTarjeta().get(1).getPIN())){
+                                restarDineroF(micajero.getListaTarjeta().get(1));
                             }
                         }
 
@@ -123,8 +133,9 @@ public class main{
                 }
             
         }
-        private static void restarDineroJ(TarjetaCredito tarjetaCredito) {
+        private static void restarDineroJ(Tarjeta tarjeta) {
 
+            TarjetaCredito tarjetaCredito = (TarjetaCredito) tarjeta;
             System.out.println("¿Que cantidad deseas retirar?");
             int dineroJavi = retirarDinero.nextInt();
 
@@ -205,22 +216,21 @@ public class main{
 
             
             tarjetaCredito.setsaldoDisponible(tarjetaCredito.getsaldoDisponible() - ContadorDebitoDisp);
-            tarjetaCredito.setcreditoDisponible(tarjetaCredito.getsaldoDisponible()- ContadorCreditoDisp);
+            tarjetaCredito.setcreditoDisponible(tarjetaCredito.getcreditoDisponible()- ContadorCreditoDisp);
             
             System.out.println("Desglose de la cantidad satisfecha:");
             System.out.println(ContadorQ + " billetes de 500 €");
             System.out.println(ContadorD + " billetes de 200 €");
             System.out.println(ContadorDiez + " billetes de 10 €");
             System.out.println(ContadorCinco + " billetes de 5 €");
-            
-            
-
         }
 
-
-        public static void restarDineroF(TarjetaDebito tarjetaDebito){ 
+        public static void restarDineroF(Tarjeta tarjeta){ 
+            TarjetaDebito tarjetaDebito = (TarjetaDebito) tarjeta;
             System.out.println("¿Que cantidad deseas retirar?");
             int dineroFran = retirarDinero.nextInt();
+
+            tarjetaDebito.setsaldoDisponible(tarjetaDebito.getsaldoDisponible() - dineroFran);
 
             int ContadorQ  = 0;
             int ContadorD  = 0;
@@ -257,7 +267,7 @@ public class main{
                         break;
             }
 
-            tarjetaDebito.setsaldoDisponible(tarjetaDebito.getsaldoDisponible() - dineroFran);
+            
             
             
             System.out.println("Desglose de la cantidad satisfecha:");
